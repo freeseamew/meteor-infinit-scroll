@@ -1,0 +1,55 @@
+<template name="postList">
+
+  <div class="row margin-top-20">
+    <div class="col-xs-12 col-md-12 table-border tableHeight padding-0 " >
+
+      <table class="table" >
+        <thead class=" table-header-bg">
+          <tr>
+            <th class="tb-title">제목</th>
+            <th class="align-center tb-user">사용자</th>
+            <th class="align-center tb-view">조회</th>
+            <th class="align-center tb-comment">댓글</th>
+            <th class="align-centr tb-recommend">추천</th>
+            <th class="align-right tb-date">날짜</th>
+          </tr>
+        </thead>
+        <tbody id="tableBoardList" ss>
+        {{#each list}}
+          {{>postListItem}}
+        {{/each}}
+
+        {{#if endOfData}}
+          <p>더이상 데이터가 없습니다.</p>
+        {{/if}}
+
+        </tbody>
+      </table>
+      {{#if postLoadingEffect}}
+        {{>postLoadingItem}}
+      {{/if}}
+
+      {{#unless Template.subscriptionsReady}}
+        {{>postLoadingItem}}
+      {{/unless}}
+    </div>
+
+  </div>
+</template>
+
+<template name="postListItem">
+  <tr id="my-infinite-scrolling-list" pageCnt="{{pageCnt}}" >
+    <td class="tb-title"><p><a href="{{pathFor '/postView/:id' id=_id}}" name="#{{_id}}" class="goView" >{{postTitle}}</a></p></td>
+    <td class="align-center tb-user"><p><a href="{{pathFor '/postView/:id' id=_id}}" class="goView">{{postUserName}}</a></p></td>
+    <td class="align-center tb-view"><p><a href="{{pathFor '/postView/:id' id=_id}}" class="goView">{{postViewCount}}</a></p></td>
+    <td class="align-center tb-comment"><p><a href="{{pathFor '/postView/:id' id=_id}}" class="goView">{{postCommentCount}}</a></p></td>
+    <td class="align-center tb-recommend"><p><a href="{{pathFor '/postView/:id' id=_id}}" class="goView">{{postLikeCount}}</a></p></td>
+    <td class="align-right tb-date"><p><a href="{{pathFor '/countTest'}}" class="goView">{{postDate}}</a></p></td>
+  </tr>
+</template>
+
+<template name="postLoadingItem">
+  <div class="loading-bar">
+    <div class="loader"></div>
+  </div>
+</template>

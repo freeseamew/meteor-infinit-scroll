@@ -1,0 +1,20 @@
+<template name="mainLayout">
+  <header class="navbar navbar-default navbar-fixed-top table-header-bg" >
+    <div class="container ">
+
+      <div class="navbar-header">
+        <a href="/" class="navbar-brand" name="btn-home">Infinite Scroll</a>
+      </div>
+
+      <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
+        <div class="navbar-form navbar-right" ng-controller="authCtrl as auth ">
+
+        </div>
+      </div>
+    </div>
+
+  </header>
+  <div class="container">
+    {{> Template.dynamic template=content }}
+  </div>
+</template>
